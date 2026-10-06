@@ -1,0 +1,20 @@
+services:
+  targetless-calib:
+    build:
+      context: .
+      args:
+        MAKE_JOBS: "${MAKE_JOBS:-4}"
+    image: targetless-lidar-camera-calib:ubuntu22-cu128
+    gpus: all
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    environment:
+      ENABLE_GUI: "${ENABLE_GUI:-0}"
+      DISPLAY: "${DISPLAY:-}"
+      PYTHONPATH: "/workspace"
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility,graphics
+    volumes:
+      - "${TARGETLESS_REPO_PATH:-..}:/workspace"
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
