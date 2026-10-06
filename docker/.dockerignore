@@ -1,0 +1,6 @@
+building_imu
+res
+assets
+.git
+__pycache__
+*.pyc

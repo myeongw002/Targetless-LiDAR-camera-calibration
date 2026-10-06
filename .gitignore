@@ -1,0 +1,5 @@
+pre_data/
+FCGF/model/__pycache__/
+FCGF/__pycache__/
+FCGF/kitti_v0.3.pth
+docker/docker/__pycache__/

@@ -1,0 +1,19 @@
+services:
+  targetless-calib:
+    build:
+      context: .
+      args:
+        MAKE_JOBS: "${MAKE_JOBS:-4}"
+    image: targetless-lidar-camera-calib:rtx5070-cu128-mounted
+    gpus: all
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    environment:
+      ENABLE_GUI: "${ENABLE_GUI:-0}"
+      DISPLAY: "${DISPLAY:-}"
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility,graphics
+    volumes:
+      - "${TARGETLESS_REPO_PATH:-../Targetless-LiDAR-camera-calibration}:/workspace"
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
